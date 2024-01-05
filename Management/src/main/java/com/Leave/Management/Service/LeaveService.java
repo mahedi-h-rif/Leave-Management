@@ -44,13 +44,13 @@ public class LeaveService {
         if (leave.getFromDate().isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("Cannot apply for past dates");
         }
-        if (leave.getLeaveType().equalsIgnoreCase("sick leave") && userInfo.getSickLeave() < 1) {
+        if (leave.getLeaveType().equalsIgnoreCase("sick") && userInfo.getSickLeave() < 1) {
             throw new IllegalArgumentException("No sick leave balance available");
         }
-        if (leave.getLeaveType().equalsIgnoreCase("casual leave") && userInfo.getCasualLeave() < 1) {
+        if (leave.getLeaveType().equalsIgnoreCase("casual") && userInfo.getCasualLeave() < 1) {
             throw new IllegalArgumentException("No casual leave balance available");
         }
-        if (leave.getLeaveType().equalsIgnoreCase("custom leave") && userInfo.getCustomLeave() < 1) {
+        if (leave.getLeaveType().equalsIgnoreCase("custom") && userInfo.getCustomLeave() < 1) {
             throw new IllegalArgumentException("No custom leave balance available");
         }
         Long balance = ChronoUnit.DAYS.between(leave.getFromDate(),leave.getToDate());
